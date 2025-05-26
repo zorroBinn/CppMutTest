@@ -57,7 +57,7 @@ void NumericConstantsMutation::mutate(const QString &filePath)
     }
     else {
         if (isFloat) {
-            quint64 intPartVal = QRandomGenerator::global()->bounded(1, MAX_INT_PART_USED_VALUE);
+            quint64 intPartVal = QRandomGenerator::global()->bounded(static_cast<quint64>(1), static_cast<quint64>(MAX_INT_PART_USED_VALUE));
             int fracPartVal = QRandomGenerator::global()->bounded(MAX_FRAC_PART_USED_VALUE);
             QString replacementIntPart = QString::number(intPartVal);
             QString replacementFracPart = QString::number(fracPartVal);

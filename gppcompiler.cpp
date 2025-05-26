@@ -3,7 +3,7 @@
 bool GppCompiler::isAvailable() const
 {
     QProcess process;
-    process.start("g++ --version");
+    process.start("clang++", QStringList() << "--version");
     process.waitForFinished(5000);
     return process.exitStatus() == QProcess::NormalExit && process.exitCode() == 0;
 }
