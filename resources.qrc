@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/new/icons">
+        <file>CMT.ico</file>
+        <file>doc.html</file>
+    </qresource>
+</RCC>
