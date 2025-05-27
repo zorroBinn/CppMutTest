@@ -242,12 +242,11 @@ void MutationManagerSubsystem::runTestsOnMutants(QStringList &log)
             QStringList localLog;
 
             CompilationResults result = localBuildRun.buildAndRun(projectFolderPath, mutantSourceFiles,
-                                                              testFiles, outputExecutablePath,
-                                                              compileOutput, compilerType,
-                                                              framework, localLog);
+                                                                    testFiles, outputExecutablePath,
+                                                                    compileOutput, compilerType, framework);
 
             //Получение результатов тестов (включая пустой результат при ошибке)
-            QMap<QString, QString> testResults = localBuildRun.getTestResults();
+            QHash<QString, QString> testResults = localBuildRun.getTestResults();
 
             //Синхронизация доступа к mutantTestResults
             QMutexLocker locker(&mutex);
@@ -361,7 +360,7 @@ bool MutationManagerSubsystem::startMutationProcess(QStringList &log)
     return !mutantTestResults.isEmpty();
 }
 
-QMap<QString, QMap<QString, QString>> MutationManagerSubsystem::getMutantTestResults() const
+QMap<QString, QHash<QString, QString>> MutationManagerSubsystem::getMutantTestResults() const
 {
     return mutantTestResults;
 }

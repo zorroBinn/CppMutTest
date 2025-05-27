@@ -1,5 +1,7 @@
 #pragma once
 #include <QString>
+#include <QHash>
+#include <QMap>
 #include <QVector>
 #include <QDir>
 #include <QFileInfoList>

@@ -19,7 +19,13 @@ protected:
     QVector<QPair<int, QString>> findOps(const QString &masked, const QRegularExpression &rx) const override;
 
 private:
-    QVector<QPair<int, QString>> filterStringsInsideRawStrings( const QVector<QPair<int, QString>> &stringOps,
+    ///
+    /// \brief filterStringsInsideRawStrings - Исключает найденные обычные строки из сырых строк
+    /// \param stringOps - Список обнаруженных обычных строк
+    /// \param rawOps - Список обнаруженных сырых строк
+    /// \return QVector<QPair<int, QString>> - Отфильтрованный список обычных строк
+    ///
+    QVector<QPair<int, QString>> filterStringsInsideRawStrings(const QVector<QPair<int, QString>> &stringOps,
                                                                 const QVector<QPair<int, QString>> &rawOps);
 
 public:

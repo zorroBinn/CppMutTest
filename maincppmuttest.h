@@ -3,10 +3,11 @@
 #include <QStackedWidget>
 #include <QProgressDialog>
 #include <QFutureWatcher>
-#include <QtConcurrent/QtConcurrent>
+#include <QtConcurrent>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSet>
+#include <QHash>
 #include <QMap>
 #include <QScrollBar>
 #include "configsubsystem.h"

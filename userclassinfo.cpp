@@ -1,6 +1,6 @@
 #include "userclassinfo.h"
 
-UserClassInfo::UserClassInfo(const QString &className) : className(className), hFilePath(""), cppFilePath(""), testFilePaths({}), availableMutations({}) {}
+UserClassInfo::UserClassInfo(const QString &className) : className(className) {}
 
 bool UserClassInfo::hasUnitTests() const
 {
@@ -95,12 +95,12 @@ void UserClassInfo::setAvailableMutations(const QVector<SupportedMutations> &mut
     availableMutations = mutations;
 }
 
-QMap<QString, QString> UserClassInfo::getOriginalTestsResults() const
+QHash<QString, QString> UserClassInfo::getOriginalTestsResults() const
 {
     return originalTestsResults;
 }
 
-void UserClassInfo::setOriginalTestsResults(const QMap<QString, QString> &newOriginalTestsResults)
+void UserClassInfo::setOriginalTestsResults(const QHash<QString, QString> &newOriginalTestsResults)
 {
     originalTestsResults = newOriginalTestsResults;
 }

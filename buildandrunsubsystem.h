@@ -1,7 +1,7 @@
 #pragma once
 #include <QString>
 #include <QStringList>
-#include <QMap>
+#include <QHash>
 #include <QProcess>
 #include <QTextStream>
 #include <QRegularExpression>
@@ -18,7 +18,7 @@
 class BuildAndRunSubsystem
 {
 private:
-    QMap<QString, QString> testResults; //Словарь <название теста, результат>
+    QHash<QString, QString> testResults; //Словарь <название теста, результат>
 
     ///
     /// \brief runExecutable - выполняет запуск исполняемого файла
@@ -58,9 +58,9 @@ public:
 
     ///
     /// \brief getTestResults - возвращает словарь <название теста - результат>
-    /// \return QMap<QString, QString> - результаты выполнения тестов
+    /// \return QHash<QString, QString> - результаты выполнения тестов
     ///
-    QMap<QString, QString> getTestResults() const;
+    QHash<QString, QString> getTestResults() const;
 
     ///
     /// \brief compilerIsAvailable - проверяет доступность компилятора
@@ -79,11 +79,9 @@ public:
     /// \param compileOutput - строка для вывода компилятора
     /// \param compilerType - используемый компилятор
     /// \param framework - используемый фреймворк тестирования
-    /// \param log - ссылка для логгирования
     /// \return true - если сборка и запуск прошли успешно
     ///
     CompilationResults buildAndRun(const QString &folderPath, const QStringList &sourceFiles,
-                     const QStringList &testFiles, const QString &outputExecutablePath,
-                     QString &compileOutput, SupportedCompilers compilerType,
-                     SupportedTestFrameworks framework, QStringList &log);
+                                    const QStringList &testFiles, const QString &outputExecutablePath,
+                                    QString &compileOutput, SupportedCompilers compilerType, SupportedTestFrameworks framework);
 };

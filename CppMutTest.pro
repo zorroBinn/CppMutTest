@@ -16,7 +16,6 @@ SOURCES += \
     buildandrunsubsystem.cpp \
     clangcompiler.cpp \
     configsubsystem.cpp \
-    controller.cpp \
     documentation.cpp \
     exceptionsmutation.cpp \
     gppcompiler.cpp \
@@ -37,7 +36,6 @@ HEADERS += \
     buildandrunsubsystem.h \
     clangcompiler.h \
     configsubsystem.h \
-    controller.h \
     documentation.h \
     exceptionsmutation.h \
     gppcompiler.h \

@@ -10,7 +10,8 @@ bool BuildAndRunSubsystem::runExecutable(const QString &executablePath, QString 
         QFileInfo exeInfo(executablePath);
         QString xmlPath = exeInfo.absolutePath() + QDir::separator() + "out.xml";
         arguments << QString("--gtest_output=xml:%1").arg(xmlPath);
-    } else if (framework == SupportedTestFrameworks::BoostTest) {
+    }
+    else if (framework == SupportedTestFrameworks::BoostTest) {
         arguments << "--report_level=detailed" << "--report_format=XML";
     }
 
@@ -125,7 +126,7 @@ bool BuildAndRunSubsystem::compilerIsAvailable(SupportedCompilers compilerType, 
 CompilationResults BuildAndRunSubsystem::buildAndRun(const QString &folderPath, const QStringList &sourceFiles,
                                        const QStringList &testFiles, const QString &outputExecutablePath,
                                        QString &compileOutput, SupportedCompilers compilerType,
-                                       SupportedTestFrameworks framework, QStringList &log)
+                                       SupportedTestFrameworks framework)
 {
     testResults.clear();
     std::unique_ptr<ICompiler> compiler;
@@ -160,7 +161,7 @@ CompilationResults BuildAndRunSubsystem::buildAndRun(const QString &folderPath, 
     return CompilationResults::Success;
 }
 
-QMap<QString, QString> BuildAndRunSubsystem::getTestResults() const
+QHash<QString, QString> BuildAndRunSubsystem::getTestResults() const
 {
     return testResults;
 }

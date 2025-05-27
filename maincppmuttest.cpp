@@ -345,13 +345,13 @@ void MainCppMutTest::displayTests(const QString &identifier, bool isMutant)
     ui->tableWidget_tests->setHorizontalHeaderLabels({"Тест", "Результат"});
 
     QVector<QString> testNames;
-    QMap<QString, QString> testResults;
+    QHash<QString, QString> testResults;
 
     if (isMutant) {
         if (!mutationManager) {
             return;
         }
-        QMap<QString, QMap<QString, QString>> mutantTestResults = mutationManager->getMutantTestResults();
+        QMap<QString, QHash<QString, QString>> mutantTestResults = mutationManager->getMutantTestResults();
         testResults = mutantTestResults.value(identifier);
         QVector<UserClassInfo> classes = srcAnalysis->getUserClasses();
         for (const UserClassInfo& userClass : classes) {
@@ -515,7 +515,7 @@ void MainCppMutTest::showMSIAndUpdateUI()
     }
 
 
-    QMap<QString, MutantStates> mutantStates = analyzer.getMutantStates();
+    QHash<QString, MutantStates> mutantStates = analyzer.getMutantStates();
 
     for (int i = 0; i < ui->listWidget_mutants->count(); i++) {
         QListWidgetItem *item = ui->listWidget_mutants->item(i);

@@ -447,8 +447,7 @@ bool SourceCodeAnalysisSubsystem::runOriginalTests(SupportedCompilers compiler, 
         QStringList localLog;
         CompilationResults result = localBuildRun.buildAndRun(folderPath, sourceFiles,
                                                               testFiles, outputExePath,
-                                                              compileOutput, compiler,
-                                                              testFramework, localLog);
+                                                              compileOutput, compiler, testFramework);
 
         if (result != CompilationResults::Success) {
             QMutexLocker locker(&logMutex);
@@ -458,7 +457,7 @@ bool SourceCodeAnalysisSubsystem::runOriginalTests(SupportedCompilers compiler, 
             return;
         }
 
-        QMap<QString, QString> testResults = localBuildRun.getTestResults();
+        QHash<QString, QString> testResults = localBuildRun.getTestResults();
         userClass.setOriginalTestsResults(testResults);
 
         if (testResults.isEmpty()) {

@@ -1,6 +1,6 @@
 #include "analyticalsubsystem.h"
 
-MutantStates AnalyticalSubsystem::calculateMutantState(const QMap<QString, QString> &testResults) const
+MutantStates AnalyticalSubsystem::calculateMutantState(const QHash<QString, QString> &testResults) const
 {
     //Если результаты тестов пусты, мутант считается убитым
     if (testResults.isEmpty()) {
@@ -19,7 +19,7 @@ MutantStates AnalyticalSubsystem::calculateMutantState(const QMap<QString, QStri
 }
 
 AnalyticalSubsystem::AnalyticalSubsystem(const QMap<QString, SupportedMutations> &mutantsTypes,
-                                         const QMap<QString, QMap<QString, QString> > &mutantTestResults)
+                                         const QMap<QString, QHash<QString, QString> > &mutantTestResults)
     : mutantsTypes(mutantsTypes), mutantTestResults(mutantTestResults)
 {
     //Инициализация состояний мутантов
@@ -69,7 +69,7 @@ double AnalyticalSubsystem::calculateMSIByMutationType(SupportedMutations mutati
     return std::round(msi * 10.0) / 10.0;
 }
 
-QMap<QString, MutantStates> AnalyticalSubsystem::getMutantStates() const
+QHash<QString, MutantStates> AnalyticalSubsystem::getMutantStates() const
 {
     return mutantStates;
 }

@@ -1,4 +1,5 @@
 #pragma once
+#include <QHash>
 #include <QMap>
 #include <QString>
 #include "listofsupportedmutations.h"
@@ -12,15 +13,15 @@ class AnalyticalSubsystem
 {
 private:
     QMap<QString, SupportedMutations> mutantsTypes; //Словарь <путь к мутанту, тип мутации>
-    QMap<QString, QMap<QString, QString>> mutantTestResults; //Словарь <путь к мутанту, результаты тестов>
-    QMap<QString, MutantStates> mutantStates; //Словарь <путь к мутанту, состояние>
+    QMap<QString, QHash<QString, QString>> mutantTestResults; //Словарь <путь к мутанту, результаты тестов>
+    QHash<QString, MutantStates> mutantStates; //Словарь <путь к мутанту, состояние>
 
     ///
     /// \brief calculateMutantState - определяет состояние мутанта
     /// \param testResults - результаты тестов для мутанта
     /// \return MutantStates - состояние мутанта
     ///
-    MutantStates calculateMutantState(const QMap<QString, QString> &testResults) const;
+    MutantStates calculateMutantState(const QHash<QString, QString> &testResults) const;
 
 public:
     ///
@@ -29,7 +30,7 @@ public:
     /// \param mutantTestResults - словарь путей к мутантам и их результатов тестов
     ///
     AnalyticalSubsystem(const QMap<QString, SupportedMutations> &mutantsTypes,
-                        const QMap<QString, QMap<QString, QString>> &mutantTestResults);
+                        const QMap<QString, QHash<QString, QString>> &mutantTestResults);
 
     ///
     /// \brief calculateMSI - вычисляет общий Mutation Score Indicator (MSI)
@@ -46,7 +47,7 @@ public:
 
     ///
     /// \brief getMutantStates - возвращает словарь состояний мутантов
-    /// \return QMap<QString, MutantStates> - состояния мутантов
+    /// \return QHash<QString, MutantStates> - состояния мутантов
     ///
-    QMap<QString, MutantStates> getMutantStates() const;
+    QHash<QString, MutantStates> getMutantStates() const;
 };

@@ -1,5 +1,5 @@
 #pragma once
-#include <QMap>
+#include <QHash>
 #include <QString>
 #include <QVector>
 #include <QDir>
@@ -18,7 +18,7 @@ private:
     QVector<QString> methodNames; //Названия методов класса
     QVector<QString> unitTestNames; //Названия юнит-тестов класса
     QVector<SupportedMutations> availableMutations; //Доступные операторы мутаций для класса
-    QMap<QString, QString> originalTestsResults; //Оригинальные результаты тестов
+    QHash<QString, QString> originalTestsResults; //Оригинальные результаты тестов
 
 public:
     ///
@@ -126,13 +126,13 @@ public:
     void setAvailableMutations(const QVector<SupportedMutations> &mutations);
 
     ///
-    /// \brief getOriginalTestsResults
-    /// \return QMap<QString, QString>
+    /// \brief getOriginalTestsResults - возвращает список оригинальных результатов тестов для класса
+    /// \return QHash<QString, QString> - результаты тестов для класса
     ///
-    QMap<QString, QString> getOriginalTestsResults() const;
+    QHash<QString, QString> getOriginalTestsResults() const;
     ///
-    /// \brief setOriginalTestsResults -
+    /// \brief setOriginalTestsResults - задаёт список оригинальных результатов тестов для класса
     /// \param newOriginalTestsResults - результаты тестов для класса
     ///
-    void setOriginalTestsResults(const QMap<QString, QString> &newOriginalTestsResults);
+    void setOriginalTestsResults(const QHash<QString, QString> &newOriginalTestsResults);
 };

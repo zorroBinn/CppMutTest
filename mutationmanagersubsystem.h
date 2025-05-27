@@ -1,4 +1,5 @@
 #pragma once
+#include <QHash>
 #include <QMap>
 #include <QSet>
 #include <QString>
@@ -26,7 +27,7 @@ class MutationManagerSubsystem
 private:
     QString workingDirectoryPath; //Абсолютный путь к рабочей директории "CppMutTest_WorkingDirectory"
     QMap<QString, SupportedMutations> mutantsTypes; //Словарь <абсолютный путь к мутанту, тип мутации>
-    QMap<QString, QMap<QString, QString>> mutantTestResults; //Словарь <абсолютный путь к мутанту, результаты тестов>
+    QMap<QString, QHash<QString, QString>> mutantTestResults; //Словарь <абсолютный путь к мутанту, результаты тестов>
     ConfigSubsystem* config; //Ссылка на объект ConfigSubsystem для получения информации
     QMutex mutex; //Мьютекс для синхронизации доступа к mutantTestResults
     QMutex logMutex; //Мьютекс для синхронизации доступа к log
@@ -85,9 +86,9 @@ public:
 
     ///
     /// \brief getMutantTestResults - возвращает словарь с результами выполнения тестов для всех мутантов
-    /// \return QMap<QString, QMap<QString, QString>> - результаты тестов для мутантов
+    /// \return QMap<QString, QHash<QString, QString>> - результаты тестов для мутантов
     ///
-    QMap<QString, QMap<QString, QString>> getMutantTestResults() const;
+    QMap<QString, QHash<QString, QString>> getMutantTestResults() const;
 
     ///
     /// \brief getWorkingDirectoryPath - возвращает абсолютный путь к рабочей директории
