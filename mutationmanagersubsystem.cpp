@@ -83,7 +83,20 @@ bool MutationManagerSubsystem::distributeMutants(QStringList &log)
         }
 
         //Форматированный номер мутанта с ведущими нулями
-        QString mutantIndex = QString("%1").arg(i + 1, 4, 10, QChar('0'));
+        QString mutantIndex;
+        short int numMut = config->getNumberOfMutations();
+        if (numMut < 100) {
+            mutantIndex = QString("%1").arg(i + 1, 2, 10, QChar('0'));
+        }
+        else if (numMut < 1000) {
+            mutantIndex = QString("%1").arg(i + 1, 3, 10, QChar('0'));
+        }
+        else if (numMut < 10000) {
+            mutantIndex = QString("%1").arg(i + 1, 4, 10, QChar('0'));
+        }
+        else {
+            mutantIndex = QString("%1").arg(i + 1, 5, 10, QChar('0'));
+        }
 
         //Создание поддиректории mutant_<i>_<shortName>
         QString mutantDirName = QString("mutant_%1_%2").arg(mutantIndex).arg(shortName);
@@ -103,7 +116,6 @@ bool MutationManagerSubsystem::distributeMutants(QStringList &log)
         }
 
         mutantsTypes[mutantFilePath] = mutation;
-        //log << QString("Создана директория %1, скопирован файл %2, тип мутации: %3").arg(mutantDirName).arg(mutantFileName).arg(shortName);
     }
 
     return !mutantsTypes.isEmpty();
