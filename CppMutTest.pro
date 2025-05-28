@@ -16,12 +16,12 @@ SOURCES += \
     buildandrunsubsystem.cpp \
     clangcompiler.cpp \
     configsubsystem.cpp \
-    documentation.cpp \
     exceptionsmutation.cpp \
     gppcompiler.cpp \
     logicalmutation.cpp \
     main.cpp \
     maincppmuttest.cpp \
+    mainguide.cpp \
     mutationmanagersubsystem.cpp \
     numericconstantsmutation.cpp \
     sourcecodeanalysissubsystem.cpp \
@@ -36,7 +36,6 @@ HEADERS += \
     buildandrunsubsystem.h \
     clangcompiler.h \
     configsubsystem.h \
-    documentation.h \
     exceptionsmutation.h \
     gppcompiler.h \
     listofcompilationresults.h \
@@ -46,6 +45,7 @@ HEADERS += \
     listofsupportedtestframeworks.h \
     logicalmutation.h \
     maincppmuttest.h \
+    mainguide.h \
     mutationmanagersubsystem.h \
     numericconstantsmutation.h \
     sourcecodeanalysissubsystem.h \
@@ -53,8 +53,8 @@ HEADERS += \
     userclassinfo.h
 
 FORMS += \
-    documentation.ui \
-    maincppmuttest.ui
+    maincppmuttest.ui \
+    mainguide.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

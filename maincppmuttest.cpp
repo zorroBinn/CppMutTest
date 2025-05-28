@@ -13,8 +13,8 @@ MainCppMutTest::MainCppMutTest(QWidget *parent)
     header->setSectionResizeMode(1, QHeaderView::Fixed);
     ui->tableWidget_tests->setColumnWidth(1, 150);
 
-    connect(ui->pushButton_Doc_1, &QPushButton::clicked, this, &MainCppMutTest::openDocumentation);
-    connect(ui->pushButton_Doc_2, &QPushButton::clicked, this, &MainCppMutTest::openDocumentation);
+    connect(ui->pushButton_Guide_1, &QPushButton::clicked, this, &MainCppMutTest::openGuide);
+    connect(ui->pushButton_Guide_2, &QPushButton::clicked, this, &MainCppMutTest::openGuide);
 }
 
 MainCppMutTest::~MainCppMutTest()
@@ -243,22 +243,22 @@ void MainCppMutTest::on_listWidget_mutants_itemClicked(QListWidgetItem *item)
     displayTests(currentMutant, true);
 }
 
-void MainCppMutTest::openDocumentation()
+void MainCppMutTest::openGuide()
 {
-    if (!docWindow) {
-        docWindow = new Documentation();
-        docWindow->setAttribute(Qt::WA_DeleteOnClose);
-        docWindow->setWindowFlags(Qt::Window);
+    if (!guideWindow) {
+        guideWindow = new Guide();
+        guideWindow->setAttribute(Qt::WA_DeleteOnClose);
+        guideWindow->setWindowFlags(Qt::Window);
 
-        connect(docWindow, &QWidget::destroyed, this, [=]() {
-            docWindow = nullptr;
+        connect(guideWindow, &QWidget::destroyed, this, [=]() {
+            guideWindow = nullptr;
         });
 
-        docWindow->show();
+        guideWindow->show();
     }
     else {
-        docWindow->raise();
-        docWindow->activateWindow();
+        guideWindow->raise();
+        guideWindow->activateWindow();
     }
 }
 

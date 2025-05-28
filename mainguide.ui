@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Documentation</class>
- <widget class="QWidget" name="Documentation">
+ <class>Guide</class>
+ <widget class="QWidget" name="Guide">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Документация CppMutTest</string>
+   <string>Руководство по системе CppMutTest</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -21,7 +21,7 @@
      </property>
      <property name="source">
       <url>
-       <string>qrc:/new/icons/doc.html</string>
+       <string>qrc:/new/icons/guide.html</string>
       </url>
      </property>
     </widget>

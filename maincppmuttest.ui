@@ -445,7 +445,7 @@ QPushButton:disabled {
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_Doc_1">
+           <widget class="QPushButton" name="pushButton_Guide_1">
             <property name="minimumSize">
              <size>
               <width>125</width>
@@ -483,7 +483,7 @@ QPushButton:disabled {
 }</string>
             </property>
             <property name="text">
-             <string>Документация</string>
+             <string>Руководство</string>
             </property>
            </widget>
           </item>
@@ -710,7 +710,7 @@ QPushButton:disabled {
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_Doc_2">
+         <widget class="QPushButton" name="pushButton_Guide_2">
           <property name="minimumSize">
            <size>
             <width>125</width>
@@ -748,7 +748,7 @@ QPushButton:disabled {
 }</string>
           </property>
           <property name="text">
-           <string>Документация</string>
+           <string>Руководство</string>
           </property>
          </widget>
         </item>
@@ -1428,7 +1428,7 @@ font: 700 11pt &quot;Dubai&quot;;</string>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup_testFrameworks"/>
   <buttongroup name="buttonGroup_compilers"/>
+  <buttongroup name="buttonGroup_testFrameworks"/>
  </buttongroups>
 </ui>

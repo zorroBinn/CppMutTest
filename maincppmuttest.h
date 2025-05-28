@@ -11,7 +11,7 @@
 #include <QMap>
 #include <QScrollBar>
 #include "configsubsystem.h"
-#include "documentation.h"
+#include "mainguide.h"
 #include "listofsupportedcompilers.h"
 #include "mutationmanagersubsystem.h"
 #include "sourcecodeanalysissubsystem.h"
@@ -22,6 +22,9 @@ namespace Ui {
 class MainCppMutTest;
 }
 
+///
+/// \brief The MainCppMutTest class - класс основного окна графического интерфейса
+///
 class MainCppMutTest : public QStackedWidget
 {
     Q_OBJECT
@@ -144,7 +147,7 @@ private slots:
 
 private:
     Ui::MainCppMutTest *ui; //Указатель на форму пользовательского интерфейса
-    Documentation *docWindow = nullptr; //Указатель на окно документации
+    Guide *guideWindow = nullptr; //Указатель на окно руководства по системе
     QStringList log; //Список сообщений логов
     QString folderPath; //Путь к выбранной папке проекта
     SupportedCompilers selectedCompiler; //Текущий выбранный компилятор
@@ -172,9 +175,9 @@ private:
     void cleanMSI();
 
     ///
-    /// \brief openDocumentation - Открывает или активирует окно документации
+    /// \brief openGuide - Открывает или активирует окно руководства по системе
     ///
-    void openDocumentation();
+    void openGuide();
 
     ///
     /// \brief openAndCheckNewFolder - Проверяет и устанавливает новую папку проекта
