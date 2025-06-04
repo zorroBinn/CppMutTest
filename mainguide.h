@@ -1,5 +1,5 @@
 #pragma once
-
+#include <QIcon>
 #include <QWidget>
 
 namespace Ui {

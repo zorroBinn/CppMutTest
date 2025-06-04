@@ -206,9 +206,13 @@ void MutationManagerSubsystem::runTestsOnMutants(QStringList &log)
 
     //Настройка пула потоков
     QThreadPool threadPool;
-    threadPool.setMaxThreadCount(QThread::idealThreadCount() / config->getThreadDiv());
-    QList<QFuture<void>> futures;
+    int maxThreads = qMax(1, QThread::idealThreadCount() / config->getThreadDiv());
+    threadPool.setMaxThreadCount(maxThreads);
+    if (maxThreads == 1) {
+        log << "Используется 1 поток из-за ограничений системы или настроек.";
+    }
 
+    QList<QFuture<void>> futures;
     QStringList localLogs; //Локальный список для накопления логов из всех потоков
 
     //Итерация по мутантам
