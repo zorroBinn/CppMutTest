@@ -105,12 +105,13 @@ bool LogicalMutation::isAvailable(const QString &filePath)
     QString content = QTextStream(&file).readAll();
     file.close();
 
-    content.remove(QRegularExpression(R"(//[^\n]*)"));
-    content.remove(QRegularExpression(R"(/\*.*?\*/)", QRegularExpression::DotMatchesEverythingOption));
-    content.remove(QRegularExpression(R"(^\s*#.*$)", QRegularExpression::MultilineOption));
-    content.replace(QRegularExpression(R"("([^"\\]|\\.)*")"), "\"\"");
+    QString masked = maskContent(content);
 
-    if (!content.contains(QRegularExpression(R"((&&|\|\||!=|==|(?<!>)>(?!>)|(?<!<)<(?!<)|>=|<=|!\s*\w))"))) {
+    QRegularExpression rxCmp(R"((?<![\w<>])(==|!=|>=|<=|>|<)(?![\w<>]))"); //Сравнения
+    QRegularExpression rxLogic(R"((\&\&|\|\|))"); //И/ИЛИ
+    QRegularExpression rxNot(R"((!\s*\w))"); //NOT
+
+    if (!content.contains(rxCmp) && !content.contains(rxLogic) && !content.contains(rxNot)) {
         return false;
     }
 
