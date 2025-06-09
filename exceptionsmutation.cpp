@@ -114,12 +114,9 @@ bool ExceptionsMutation::isAvailable(const QString &filePath)
     QString content = QTextStream(&file).readAll();
     file.close();
 
-    content.remove(QRegularExpression(R"(//[^\n]*)"));
-    content.remove(QRegularExpression(R"(/\*.*?\*/)", QRegularExpression::DotMatchesEverythingOption));
-    content.remove(QRegularExpression(R"(^\s*#.*$)", QRegularExpression::MultilineOption));
-    content.replace(QRegularExpression(R"("([^"\\]|\\.)*")"), "\"\"");
+    QString masked = maskContent(content);
 
-    if (!content.contains(QRegularExpression(R"(\b(try|throw|catch)\b)"))) {
+    if (!masked.contains(QRegularExpression(R"(\b(throw|catch)\b)"))) {
         return false;
     }
 

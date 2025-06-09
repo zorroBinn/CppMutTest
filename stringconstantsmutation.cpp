@@ -175,11 +175,9 @@ bool StringConstantsMutation::isAvailable(const QString &filePath)
     QString content = QTextStream(&file).readAll();
     file.close();
 
-    content.remove(QRegularExpression(R"(//[^\n]*)"));
-    content.remove(QRegularExpression(R"(/\*.*?\*/)", QRegularExpression::DotMatchesEverythingOption));
-    content.remove(QRegularExpression(R"(^\s*#.*$)", QRegularExpression::MultilineOption));
+    QString masked = maskContent(content);
 
-    if (!content.contains(QRegularExpression(R"("([^"\\]|\\.)*")"))) {
+    if (!masked.contains(QRegularExpression(R"("([^"\\]|\\.)*")"))) {
         return false;
     }
 

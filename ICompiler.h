@@ -5,7 +5,7 @@
 #include "listofsupportedtestframeworks.h"
 
 ///
-/// \brief The ICompiler class - абстрактный класс компилятора для сборки исходных файлов
+/// \brief The ICompiler class - интерфейс компилятора для сборки исходных файлов
 ///
 class ICompiler
 {

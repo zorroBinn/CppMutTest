@@ -76,12 +76,13 @@ bool ArithmeticMutation::isAvailable(const QString &filePath)
     QString content = QTextStream(&file).readAll();
     file.close();
 
-    content.remove(QRegularExpression(R"(//[^\n]*)"));
-    content.remove(QRegularExpression(R"(/\*.*?\*/)", QRegularExpression::DotMatchesEverythingOption));
-    content.remove(QRegularExpression(R"(^\s*#.*$)", QRegularExpression::MultilineOption));
-    content.replace(QRegularExpression(R"("([^"\\]|\\.)*")"), "\"\"");
+    QString masked = maskContent(content);
 
-    if (!content.contains(QRegularExpression(R"([\+\-\*/%])"))) {
+    QRegularExpression rxUnary(R"((\+\+|--))"); //Инкремент/декремент
+    QRegularExpression rxCompound(R"((\+=|-=|\*=|/=|%=))"); //Составные операторы
+    QRegularExpression rxSingle(R"((?<![\w+\-*/%])([+\-*/%])(?![+\-*/%=]))"); //Односимвольные операторы
+
+    if (!masked.contains(rxUnary) && !masked.contains(rxCompound) && !masked.contains(rxSingle)) {
         return false;
     }
 

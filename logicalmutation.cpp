@@ -111,7 +111,7 @@ bool LogicalMutation::isAvailable(const QString &filePath)
     QRegularExpression rxLogic(R"((\&\&|\|\|))"); //И/ИЛИ
     QRegularExpression rxNot(R"((!\s*\w))"); //NOT
 
-    if (!content.contains(rxCmp) && !content.contains(rxLogic) && !content.contains(rxNot)) {
+    if (!masked.contains(rxCmp) && !masked.contains(rxLogic) && !masked.contains(rxNot)) {
         return false;
     }
 
